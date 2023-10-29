@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Professional Front Page</title>
+</head>
+<body>
+    <header>
+        <h1 class="slogan">जय जवान जय किसान</h1>
+    </header>
+    <main>
+        <form method="POST" action="/">
+            <div class="form-field">
+                <label for="field1">Enter amount of nitrogen:</label>
+                <input type="text" id="field1" name="field1" required>
+            </div>
+            <div class="form-field">
+                <label for="field2">Enter amount of Phosphorus:</label>
+                <input type="text" id="field2" name="field2" required>
+            </div>
+            <div class="form-field">
+                <label for="field3">Enter amount of Potassium:</label>
+                <input type="text" id="field3" name="field3" required>
+            </div>
+            <div class="form-field">
+                <label for="field4">Enter Humidity:</label>
+                <input type="text" id="field4" name="field4" required>
+            </div>
+            <div class="form-field">
+                <label for="field5">Enter Temperature:</label>
+                <input type="text" id="field5" name="field5" required>
+            </div>
+            
+            <!-- Dropdown 1 -->
+            <div class="form-field">
+                <label for="dropdown1">Choose soil type:</label>
+                <select id="dropdown1" name="dropdown1">
+                    <option value="option1">Sandy</option>
+                    <option value="option2">Loamy</option>
+                    <option value="option3">Black</option>
+                    <option value="option4">Red</option>
+                    <option value="option5">Clayey</option>
+
+                </select>
+            </div>
+            
+            <!-- Dropdown 2 -->
+            <div class="form-field">
+                <label for="dropdown2">Choose crop type:</label>
+                <select id="dropdown2" name="dropdown2">
+                    <option value="option1">Maize</option>
+                    <option value="option2">Sugarcane</option>
+                    <option value="option3">cotton</option>
+                    <option value="option4">tobacco</option>
+                    <option value="option5">Paddy</option>
+                </select>
+            </div>
+        
+            <input type="submit" value="Submit" class="submit-button">
+        </form>
+        
+    </main>
+</body>
+</html>
+
