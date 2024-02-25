@@ -8,14 +8,13 @@
 </head>
 <body>
     <header>
-        <h1 class="slogan">जय जवान जय किसान</h1>
+        <h1 class="slogan">जय  जवान  जय  किसान</h1>
     </header>
     <div id="fertilizerDiv">
         Your predicted fertilizer is <span>{{ prediction }}</span>
     </div>
     <main>
-        
-        <form method="POST" action="/">
+        <form method="POST" action="{{ url_for('result') }}">
             <div class="form-field">
                 <label for="field1">Enter total area of land(in acres)</label>
                 <input type="number" id="field1" name="field1" required>
@@ -28,8 +27,8 @@
                 </select>
             </div>
             <div class="form-field">
-                <label for="dropdown2">Are you using a tractor for spraying</label>
-                <select id="dropdown2" name="dropdown2">
+                <label for="dropdown3">Are you using a tractor for spraying</label>
+                <select id="dropdown3" name="dropdown3">
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </select>
@@ -38,7 +37,17 @@
             <input type="submit" value="Submit" class="submit-button">
         </form>
         
+        <!-- Display the inputs and fertilizer name -->
+        <div>
+            <p>Area of land: {{ area_land }} acres</p>
+            <p>Using a water pump: {{ 'Yes' if water_pump == '1' else 'No' }}</p>
+            <p>Using a tractor for spraying: {{ 'Yes' if tractor_spraying == '1' else 'No' }}</p>
+        </div>
+
+        <form action="{{ url_for('fetch_price') }}" method="GET">
+            <button type="submit">Show Price</button>
+        </form>
     </main>
+
 </body>
 </html>
-
