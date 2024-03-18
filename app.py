@@ -50,43 +50,51 @@ def get_fertilizer_price(fertilizer_name, url, price_class):
             if(fertilizer_name == '20-20-20') : return fertilizer_price*12.5
             return fertilizer_price
         else:
-            return None # Price information not found
+            return None 
     else:
-        return None # Failed to retrieve data
+        return None 
 
 # Function to extract integer price
 def extract_integer_price(price_string):
     numeric_part = re.search(r'\b(\d+(\.\d+)?)\b', price_string)
     if numeric_part:
         price_as_string = numeric_part.group(1)
-        fertilizer_price = int(float(price_as_string)) # Convert to float first to handle decimal points
+        fertilizer_price = int(float(price_as_string)) 
         return fertilizer_price
     else:
-        return None # No numerical value found in the string.
+        return None 
 
 def main():
     if "fertilizer_name" not in st.session_state:
         st.session_state.fertilizer_name = None
 
     soil_mapping = {'Black': 0, 'Clayey': 1, 'Red': 3}
-    crop_mapping = {'Cotton': 0, 'Sugarcane': 1, 'Wheat': 2}
+    crop = st.selectbox("Select the crop", ["Wheat", "Sugarcane", "Cotton"])
     temp = st.number_input('Temperature', value=20)
     humi = st.number_input('Humidity', value=50)
     mois = st.number_input('Moisture', value=50)
     soil = st.selectbox('Soil Type', options=list(soil_mapping.keys()))
-    crop = st.selectbox('Crop Type', options=list(crop_mapping.keys()))
     nitro = st.number_input('Nitrogen', value=10)
     pota = st.number_input('Potassium', value=10)
     phosp = st.number_input('Phosphorus', value=10)
-    area_land = st.number_input("Enter total area of land (in acres)", min_value=0, step=1)
+    area_land = st.number_input("Enter total area of land (in acres)", min_value=1, step=1)
     water_pump = st.selectbox("Are you using a water pump?", ["No", "Yes"])
     tractor_spraying = st.selectbox("Are you using a tractor for spraying?", ["No", "Yes"])
-    crop = st.selectbox("Select the crop", ["Wheat", "Sugarcane", "Cotton"])
+
+
+
+
+    
 
     if st.button('Predict') and st.snow():
+        if crop=="Cotton":
+            crop_value= 0
+        elif crop=="Sugarcane":
+            crop_value= 1
+        elif crop=="Wheat":
+            crop_value= 3
 
         soil_value = soil_mapping[soil]
-        crop_value = crop_mapping[crop]
         input = [temp, humi, mois, soil_value, crop_value, nitro, pota, phosp]
         result = fertilizer.classes_[model.predict([input])[0]]
         st.info(f'Recommended Fertilizer: {result}', icon="ℹ️")
